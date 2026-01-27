@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
   async function fetchData() {
-    const response = await fetch('https://hiking-backend.vercel.app/hikes');
-    // const response = await fetch('http://localhost:3000/hikes');
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/hikes`);
     const tempData = await response.json();
     setData(tempData);
   }
@@ -15,9 +14,29 @@ function App() {
     fetchData();
   }, []);
 
+  // form handler function goes here
+
   return (
-    <div>{JSON.stringify(data)}</div>
-  )
+    <>
+      <h1>hikes</h1>
+      {data && (
+        <ul>
+          {data.map((hike) => {
+            return (
+              <li key={hike.id}>
+                <h3>ID:&nbsp;{hike.id}</h3>
+                <div>Name:&nbsp;{hike.name}</div>
+                <div>Location:&nbsp;{hike.location}</div>
+                <div>Created At:&nbsp;{hike.createdAt}</div>
+                <div>Updated At:&nbsp;{hike.updatedAt}</div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {/* form goes here */}
+    </>
+  );
 }
 
-export default App
+export default App;
