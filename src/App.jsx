@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-    <Header/>
+    <Header />
       <h1>hikes</h1>
       {data && (
         <ul>
