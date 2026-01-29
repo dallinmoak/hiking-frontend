@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Header from "./components/header";
 
 function App() {
   const [data, setData] = useState();
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <>
+    <Header/>
       <h1>hikes</h1>
       {data && (
         <ul>
