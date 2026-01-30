@@ -55,17 +55,17 @@ function Header() {
                             <ul>
                                 <a 
                                     href="#"
-                                    className="ntLink"
+                                    className="nhLink"
                                 >
                                     <img src="../public/images/trail.png" alt="trail icon" />
-                                    Nearby Trails
+                                    Nearby Hikes
                                 </a>
                                 <a 
                                     href="#"
-                                    className="bcrLink"
+                                    className="cnhLink"
                                 >
                                     <img src="../public/images/build.png" alt="build icon" />
-                                    Build Custom Routes
+                                    Create New Hike
                                 </a>
                             </ul>
                         </div>
@@ -99,10 +99,10 @@ function Header() {
                             <ul>
                                 <a 
                                     href="#"
-                                    className="stLink"
+                                    className="shLink"
                                 >
                                     <img src="../public/images/saved.png" alt="" />
-                                    Saved Trails
+                                    Saved Hikes
                                 </a>
                             </ul>
                         </div>

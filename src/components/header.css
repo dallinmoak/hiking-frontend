@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.nav-right {
+    margin-right: 15px;
+}
+
 .nav-left {
     display: flex;
     flex-direction: row;
@@ -43,7 +47,7 @@
 
 .explore-btn:hover, 
 .save-btn:hover {
-   background-color: rgb(243, 243, 243);
+   background-color: var(--logo-blue-gray);
 }
 
 .down-arrow img {
@@ -73,8 +77,8 @@
 
 .ebtn-dropMenu img,
 .sbtn-dropMenu img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding: 3%;
     filter: brightness(0) invert(1);
     border-radius: 8px;
@@ -98,7 +102,7 @@
     right: 100px;
     top: 80px;
     width: 200px;
-    background-color: rgb(57, 99, 75);
+    background-color: var(--logo-green);
     color: white;
     border-radius: 15px;
     
@@ -113,7 +117,7 @@
     right: 10px;
     top: 80px;
     width: 200px;
-    background-color: rgb(57, 99, 75);
+    background-color: var(--logo-green);
     color: white;
     border-radius: 15px;
     
@@ -121,10 +125,10 @@
     animation: slideIn 0.25s ease-out forwards;
 }
 
-.ntLink:hover, 
-.bcrLink:hover,
-.stLink:hover {
-    background-color: rgb(6, 68, 6);
+.nhLink:hover, 
+.cnhLink:hover,
+.shLink:hover {
+    background-color: var(--logo-dark-green);
 }
 
 @keyframes slideIn {
