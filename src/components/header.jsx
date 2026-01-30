@@ -22,7 +22,7 @@ function Header() {
     <div className="nav-bar">
 
         <div className="nav-left">
-            <img src="../public/images/logo.png" alt="hiking logo"/>
+            <img src="/images/logo.png" alt="hiking logo"/>
             <h1>Hiking</h1>
         </div>
 
@@ -41,7 +41,7 @@ function Header() {
                         </div>
                         <div className="down-arrow">
                             <img 
-                                src="../public/images/down.png" 
+                                src="/images/down.png" 
                                 alt="drop-down arrow"
                                 className={isOpenE ? "rotate":""}
                             />
@@ -57,14 +57,14 @@ function Header() {
                                     href="#"
                                     className="nhLink"
                                 >
-                                    <img src="../public/images/trail.png" alt="trail icon" />
+                                    <img src="/images/trail.png" alt="trail icon" />
                                     Nearby Hikes
                                 </a>
                                 <a 
                                     href="#"
                                     className="cnhLink"
                                 >
-                                    <img src="../public/images/build.png" alt="build icon" />
+                                    <img src="/images/build.png" alt="build icon" />
                                     Create New Hike
                                 </a>
                             </ul>
@@ -85,7 +85,7 @@ function Header() {
                         </div>
                         <div className="down-arrow">
                             <img 
-                            src="../public/images/down.png" 
+                            src="/images/down.png" 
                             alt="drop-down arrow"
                             className={isOpenS ? "rotate":""}
                         />
@@ -101,7 +101,7 @@ function Header() {
                                     href="#"
                                     className="shLink"
                                 >
-                                    <img src="../public/images/saved.png" alt="" />
+                                    <img src="/images/saved.png" alt="" />
                                     Saved Hikes
                                 </a>
                             </ul>
