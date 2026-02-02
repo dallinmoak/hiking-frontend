@@ -16,13 +16,15 @@ function App() {
   }, []);
 
   // form handler function goes here
+  // needs to create new hike data from name and location. id, created, & updated are all auto.
+  function eventHandler(event) {}
 
   return (
     <>
     <Header />
       <h1>hikes</h1>
       {data && (
-        <ul>
+        <ul id="hikeList">
           {data.map((hike) => {
             return (
               <li key={hike.id}>
@@ -36,7 +38,19 @@ function App() {
           })}
         </ul>
       )}
-      {/* form goes here */}
+      { // FORM
+        <form>
+          <label for="hikeName">Name:</label>
+          <input type="text" id="hikeName" name="hikeName" />
+          <br></br>
+
+          <label for="hikeLocation">Location:</label>
+          <input type="text" id="hikeLocation" name="hikeLocation" />
+          <br></br>
+
+          <button type="submit" id="hikeSubmit" onSubmit={eventHandler}>Submit</button>
+        </form>
+      }
     </>
   );
 }
