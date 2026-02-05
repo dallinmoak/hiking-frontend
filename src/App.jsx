@@ -17,7 +17,36 @@ function App() {
 
   // form handler function goes here
   // needs to create new hike data from name and location. id, created, & updated are all auto.
-  function eventHandler(event) {}
+  async function eventHandler(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const newHike = {
+      name: formData.get('hikeName'),
+      location: formData.get('hikeLocation'),
+      description: formData.get('hikeDescription')
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/hikes`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newHike),
+      })
+      if (response.ok) {
+        console.log(response);
+        fetchData();
+        event.target.reset();
+      } else {
+        console.log(response);
+      } 
+    }
+    catch(error) {
+      console.error('Hiking Post error:', error);
+    }
+  }
 
   return (
     <>
@@ -39,16 +68,20 @@ function App() {
         </ul>
       )}
       { // FORM
-        <form>
-          <label for="hikeName">Name:</label>
+        <form onSubmit={eventHandler}>
+          <label htmlFor="hikeName">Name:</label>
           <input type="text" id="hikeName" name="hikeName" />
           <br></br>
 
-          <label for="hikeLocation">Location:</label>
+          <label htmlFor="hikeLocation">Location:</label>
           <input type="text" id="hikeLocation" name="hikeLocation" />
           <br></br>
 
-          <button type="submit" id="hikeSubmit" onSubmit={eventHandler}>Submit</button>
+          <label htmlFor="hikeDescription">Description:</label>
+          <input type="text" id="hikeDescription" name="hikeDescription" />
+          <br></br>
+
+          <button type="submit" id="hikeSubmit">Submit</button>
         </form>
       }
     </>
