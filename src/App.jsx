@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./components/header";
+import Header from "./components/Header";
 
 function App() {
   const [data, setData] = useState();
@@ -15,42 +15,42 @@ function App() {
     fetchData();
   }, []);
 
-  // form handler function goes here
-  // needs to create new hike data from name and location. id, created, & updated are all auto.
   async function eventHandler(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const newHike = {
-      name: formData.get('hikeName'),
-      location: formData.get('hikeLocation'),
-      description: formData.get('hikeDescription')
-    }
+      name: formData.get("hikeName"),
+      location: formData.get("hikeLocation"),
+      description: formData.get("hikeDescription"),
+    };
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/hikes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/hikes`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newHike),
         },
-        body: JSON.stringify(newHike),
-      })
+      );
       if (response.ok) {
         console.log(response);
         fetchData();
         event.target.reset();
       } else {
         console.log(response);
-      } 
-    }
-    catch(error) {
-      console.error('Hiking Post error:', error);
+      }
+    } catch (error) {
+      console.error("Hiking Post error:", error);
     }
   }
 
   return (
     <>
-    <Header />
+      <Header />
       <h1>hikes</h1>
       {data && (
         <ul id="hikeList">
@@ -67,7 +67,7 @@ function App() {
           })}
         </ul>
       )}
-      { // FORM
+      {
         <form onSubmit={eventHandler}>
           <label htmlFor="hikeName">Name:</label>
           <input type="text" id="hikeName" name="hikeName" />
@@ -81,7 +81,9 @@ function App() {
           <input type="text" id="hikeDescription" name="hikeDescription" />
           <br></br>
 
-          <button type="submit" id="hikeSubmit">Submit</button>
+          <button type="submit" id="hikeSubmit">
+            Submit
+          </button>
         </form>
       }
     </>
