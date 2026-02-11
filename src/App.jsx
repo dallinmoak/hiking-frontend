@@ -3,15 +3,20 @@ import Header from "./components/Header";
 import HikeList from "./components/HikeList";
 import NewHike from "./components/NewHike";
 import { HikeProvider } from "./context/HikeContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <HikeProvider>
-        <Header />
-        <HikeList />
-        <NewHike />
-      </HikeProvider>
+      <BrowserRouter>
+        <HikeProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HikeList />} exact />
+            <Route path="/newHike" element={<NewHike />} exact />
+          </Routes>
+        </HikeProvider>
+      </BrowserRouter>
     </>
   );
 }
