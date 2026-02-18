@@ -19,10 +19,10 @@ function Header() {
   return (
     <>
       <div className="nav-bar">
-        <div className="nav-left">
-          <img src="/images/logo.png" alt="hiking logo" />
-          <h1>Hiking</h1>
-        </div>
+          <Link to="/" className="nav-left">
+            <img src="/images/logo.png" alt="hiking logo" />
+            <h1>Hiking</h1>
+          </Link>
 
         <div className="nav-right">
           <div className="nav-drop-downs">
@@ -51,10 +51,10 @@ function Header() {
                         <img src="/images/trail.png" alt="trail icon" />
                         Nearby Hikes
                       </a>
-                      <a href="#" className="cnhLink">
+                      <Link to='/newhike' className="cnhLink">
                         <img src="/images/build.png" alt="build icon" />
                         Create New Hike
-                      </a>
+                      </Link>
                     </ul>
                   </div>
                 </>
