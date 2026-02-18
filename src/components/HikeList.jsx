@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHikeContext } from "../context/HikeContext";
+import { Link } from "react-router-dom";
 
 export default function HikeList() {
 
@@ -31,6 +32,11 @@ export default function HikeList() {
                 <p>Description:&nbsp;{hike.description}</p>
                 <p>Created At:&nbsp;{hike.createdAt}</p>
                 <p>Updated At:&nbsp;{hike.updatedAt}</p>
+                <nav>
+                  <Link to={`/hikeSingular/${hike.id}`} className="hikeLink">
+                    View Hike
+                  </Link>
+                </nav>
               </li>
             );
           })}
