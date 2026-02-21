@@ -11,9 +11,9 @@ function Header() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const isAnyOpen = isOpenE || isOpenS;
-      const isMenu = menuRef.current && !menuRef.current.contains(event.target);
+      const isMenuOpen = menuRef.current && !menuRef.current.contains(event.target);
 
-      if (isAnyOpen && isMenu) {
+      if (isAnyOpen && isMenuOpen) {
         setIsOpenE(false);
         setIsOpenS(false);
       }
@@ -22,7 +22,7 @@ function Header() {
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
-    
+
   },[isOpenE, isOpenS]);
 
 
