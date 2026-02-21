@@ -1,10 +1,30 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
 function Header() {
   const [isOpenE, setIsOpenE] = useState(false);
   const [isOpenS, setIsOpenS] = useState(false);
+  
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const isAnyOpen = isOpenE || isOpenS;
+      const isMenuOpen = menuRef.current && !menuRef.current.contains(event.target);
+
+      if (isAnyOpen && isMenuOpen) {
+        setIsOpenE(false);
+        setIsOpenS(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+  },[isOpenE, isOpenS]);
+
 
   function handleClick(type) {
     if (type === "explore") {
@@ -25,7 +45,7 @@ function Header() {
           </Link>
 
         <div className="nav-right">
-          <div className="nav-drop-downs">
+          <div className="nav-drop-downs" ref={menuRef}>
             <div>
               <button
                 onClick={() => handleClick("explore")}
