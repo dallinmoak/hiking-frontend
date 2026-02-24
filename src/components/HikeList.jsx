@@ -20,7 +20,7 @@ export default function HikeList() {
   return (
     <>
       <h2>Hikes:</h2>
-      {hikes && (
+      {hikes ? (
         <ul id="hikeList">
           {hikes.map((hike) => {
             return (
@@ -33,7 +33,7 @@ export default function HikeList() {
             );
           })}
         </ul>
-      )}
+      ) : (<p>Loading...</p>)}
     </>
   );
 }
