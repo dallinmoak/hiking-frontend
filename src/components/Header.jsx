@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from "@neondatabase/neon-js/auth/react/ui";
 
 function Header() {
   const [isOpenE, setIsOpenE] = useState(false);
@@ -110,6 +111,12 @@ function Header() {
                 </>
               )}
             </div>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <p>not signed in</p>
+            </SignedOut>
           </div>
         </div>
       </div>
