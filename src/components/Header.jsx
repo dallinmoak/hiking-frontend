@@ -1,17 +1,23 @@
 import { useState, useRef, useEffect } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@neondatabase/neon-js/auth/react/ui";
 
 function Header() {
   const [isOpenE, setIsOpenE] = useState(false);
   const [isOpenS, setIsOpenS] = useState(false);
-  
+
   const menuRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       const isAnyOpen = isOpenE || isOpenS;
-      const isMenuOpen = menuRef.current && !menuRef.current.contains(event.target);
+      const isMenuOpen =
+        menuRef.current && !menuRef.current.contains(event.target);
 
       if (isAnyOpen && isMenuOpen) {
         setIsOpenE(false);
@@ -19,12 +25,10 @@ function Header() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
-
-  },[isOpenE, isOpenS]);
-
+  }, [isOpenE, isOpenS]);
 
   function handleClick(type) {
     if (type === "explore") {
@@ -39,10 +43,10 @@ function Header() {
   return (
     <>
       <div className="nav-bar">
-          <Link to="/" className="nav-left">
-            <img src="/images/logo.png" alt="hiking logo" />
-            <h1>Hiking</h1>
-          </Link>
+        <Link to="/" className="nav-left">
+          <img src="/images/logo.png" alt="hiking logo" />
+          <h1>Hiking</h1>
+        </Link>
 
         <div className="nav-right">
           <div className="nav-drop-downs" ref={menuRef}>
@@ -71,7 +75,7 @@ function Header() {
                         <img src="/images/trail.png" alt="trail icon" />
                         Nearby Hikes
                       </a>
-                      <Link to='/newhike' className="cnhLink">
+                      <Link to="/newhike" className="cnhLink">
                         <img src="/images/build.png" alt="build icon" />
                         Create New Hike
                       </Link>
@@ -110,6 +114,12 @@ function Header() {
                 </>
               )}
             </div>
+            <SignedIn>
+              <UserButton size="icon" />
+            </SignedIn>
+            <SignedOut>
+              <Link to="/auth/sign-in">Sign In</Link>
+            </SignedOut>
           </div>
         </div>
       </div>
