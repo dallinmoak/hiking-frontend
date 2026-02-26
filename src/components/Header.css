@@ -5,6 +5,7 @@
 
 .nav-bar {
   display: flex;
+  /* flex-wrap: wrap; */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -20,15 +21,6 @@
   align-items: center;
   margin-right: 25px;
   gap: 15px;
-}
-
-.auth-container {
-  padding: 8px;
-  border-radius: 10px;
-}
-
-.auth-container:hover {
-  background-color: var(--logo-blue-gray);
 }
 
 .nav-left {
@@ -84,10 +76,8 @@
   align-items: center;
   gap: 5px;
   white-space: nowrap;
-
   text-decoration: none;
   color: inherit;
-
   padding: 1%;
   border-radius: 10px;
   font-size: 1em;
@@ -113,32 +103,24 @@
   padding: 0;
 }
 
-.ebtn-dropMenu {
+.ebtn-dropMenu,
+.sbtn-dropMenu {
   display: flex;
-
   position: absolute;
-  right: 210px;
   top: 80px;
   width: 200px;
   background-color: var(--logo-green);
   color: white;
   border-radius: 15px;
-
   animation: slideIn 0.25s ease-out forwards;
 }
 
+.ebtn-dropMenu {
+  right: 210px;
+}
+
 .sbtn-dropMenu {
-  display: flex;
-
-  position: absolute;
   right: 120px;
-  top: 80px;
-  width: 200px;
-  background-color: var(--logo-green);
-  color: white;
-  border-radius: 15px;
-
-  animation: slideIn 0.25s ease-out forwards;
 }
 
 .nhLink:hover,
@@ -159,8 +141,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
-  .auth-container:hover, 
+  .auth-container:hover,
   .explore-btn:hover,
   .save-btn:hover {
     background-color: var(--logo-gray);
@@ -173,5 +154,16 @@
   .ebtn-dropMenu,
   .sbtn-dropMenu {
     background-color: var(--logo-green);
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-left h1 {
+    display: none;
+  }
+
+  .ebtn-dropMenu,
+  .sbtn-dropMenu {
+    right: 10px;
   }
 }
