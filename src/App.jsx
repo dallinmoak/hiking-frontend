@@ -1,4 +1,5 @@
 import "./App.css";
+import '@neondatabase/auth-ui/css';
 import Header from "./components/Header";
 import HikeList from "./components/HikeList";
 import NewHike from "./components/NewHike";

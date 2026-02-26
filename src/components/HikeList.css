@@ -1,0 +1,63 @@
+* {
+    font-family: var(--main-font);
+    box-sizing: border-box;
+}
+
+#hikelist-container h2 {
+    margin-left: 25px;
+}
+
+#hikeList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    gap: 30px;
+}
+
+#hikeList li {
+    width: 300px;
+    padding: 25px;
+    list-style: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.hike-link {
+    text-decoration: none;
+}
+
+.hike-link h3, p {
+    color: black;
+}
+
+.hike-link h3 {
+    font-weight: normal;
+}
+
+#hikeList li:hover {
+    transform: scale(1.025);
+}
+
+@media (prefers-color-scheme: dark) { 
+    #hikeList li {
+        background-color: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #hikeList li {
+        background-color: var(--logo-blue-gray);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    #hikeList {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-left: 150px;
+        padding-right: 150px;
+        flex-wrap: wrap;
+    }
+}

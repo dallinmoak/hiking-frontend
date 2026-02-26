@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
+
+
 :root {
-  --logo-green: #426e56;
+  --logo-green: #47795e;
   --logo-dark-green: #2a5b43;
   --logo-blue-gray: #c4d7db;
+  --logo-gray: rgb(56, 56, 56);
+  --main-font: "Roboto Flex", sans-serif;
 }

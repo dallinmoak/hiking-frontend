@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useHikeContext } from "../context/HikeContext";
 import { Link } from "react-router-dom";
+import './HikeList.css';
 
 export default function HikeList() {
   const { refresh } = useHikeContext();
@@ -19,21 +20,23 @@ export default function HikeList() {
 
   return (
     <>
-      <h2>Hikes:</h2>
-      {hikes ? (
-        <ul id="hikeList">
-          {hikes.map((hike) => {
-            return (
-              <li key={hike.id}>
-                <Link to={`/hikes/${hike.id}`}>
-                  <h3>ID:&nbsp;{hike.id}</h3>
-                  <p>Name:&nbsp;{hike.name}</p>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (<p>Loading...</p>)}
+      <div id="hikelist-container">
+        <h2>Hikes:</h2>
+        {hikes ? (
+          <ul id="hikeList">
+            {hikes.map((hike) => {
+              return (
+                <li key={hike.id}>
+                  <Link to={`/hikes/${hike.id}`} className="hike-link">
+                    <h3><strong>ID:</strong>&nbsp;{hike.id}</h3>
+                    <p><strong>Name:</strong>&nbsp;{hike.name}</p>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (<p>Loading...</p>)}
+      </div>
     </>
   );
 }

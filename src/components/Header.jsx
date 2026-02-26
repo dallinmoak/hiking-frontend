@@ -114,6 +114,8 @@ function Header() {
                 </>
               )}
             </div>
+          </div>
+          <div className="auth-container">
             <SignedIn>
               <UserButton size="icon" />
             </SignedIn>
