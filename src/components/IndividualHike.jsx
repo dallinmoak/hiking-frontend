@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { parseCoordsArray } from "../utils";
 import DisplayPath from "./DisplayPath";
+import './IndividualHike.css';
 
 export default function IndividualHike() {
   const { id } = useParams();
@@ -21,18 +22,20 @@ export default function IndividualHike() {
   };
   return (
     <>
-      {hike ? (
-        <>
-          <h3>ID:&nbsp;{hike.id}</h3>
-          <p>Name:&nbsp;{hike.name}</p>
-          <DisplayPath pathData={parseCoordsArray(hike.location)} />
-          <p>Description:&nbsp;{hike.description}</p>
-          <p>Created At:&nbsp;{hike.createdAt}</p>
-          <p>Updated At:&nbsp;{hike.updatedAt}</p>
-        </>
-      ) : (
-        <h2>Loading...</h2>
-      )}
+        {hike ? (
+          <>
+          <div id="hike-container">
+            <h3>ID:&nbsp;{hike.id}</h3>
+            <p><strong>Name:</strong>&nbsp;{hike.name}</p>
+            <DisplayPath pathData={parseCoordsArray(hike.location)} />
+            <p><strong>Description:</strong>&nbsp;{hike.description}</p>
+            <p><strong>Created At:</strong>&nbsp;{hike.createdAt}</p>
+            <p><strong>Updated At:</strong>&nbsp;{hike.updatedAt}</p>
+          </div>
+          </>
+        ) : (
+          <h2 className="loading">Loading...</h2>
+        )}
     </>
   );
 }

@@ -73,7 +73,7 @@ export default function DisplayPath({ pathData }) {
   return (
     <div
       ref={mapRef}
-      style={{ width: "500px", height: "400px", position: "relative" }}
+      style={{ width: "500px", height: "400px", position: "relative", borderRadius: "5px", overflow: "hidden" }}
     />
   );
 }
