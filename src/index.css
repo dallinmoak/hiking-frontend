@@ -1,10 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap");
 
 :root {
-  --logo-green: #47795e;
-  --logo-dark-green: #2a5b43;
-  --logo-blue-gray: #c4d7db;
-  --logo-gray: rgb(56, 56, 56);
+  --brand-primary: #47795e;
+  --brand-secondary: #2a5b43;
+  --bg-accent: #c4d7db;
+  --text-main: rgb(56, 56, 56);
+  --ui-secondary: #f0f0f0;
+  --ui-tertiaty: #cecece;
   --main-font: "Roboto Flex", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-primary: #5da17d;
+    --bg-accent: #2c3e50;
+    --text-main: #f0f0f0;
+    --ui-secondary: #414141;
+    --ui-tertiaty: #5a5a5a;
+  }
 }
