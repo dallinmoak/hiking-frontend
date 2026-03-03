@@ -6,7 +6,7 @@
   --bg-accent: #c4d7db;
   --text-main: rgb(56, 56, 56);
   --ui-secondary: #f0f0f0;
-  --ui-tertiaty: #cecece;
+  --ui-tertiary: #cecece;
   --main-font: "Roboto Flex", sans-serif;
 }
 
@@ -15,7 +15,7 @@
     --brand-primary: #5da17d;
     --bg-accent: #2c3e50;
     --text-main: #f0f0f0;
-    --ui-secondary: #414141;
-    --ui-tertiaty: #5a5a5a;
+    --ui-secondary: #181818;
+    --ui-tertiary: #464646;
   }
 }
