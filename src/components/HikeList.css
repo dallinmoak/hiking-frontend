@@ -21,6 +21,7 @@
     list-style: none;
     border-radius: 10px;
     transition: transform 0.2s ease-in-out;
+    background-color: var(--logo-blue-gray);
 }
 
 .hike-link {
@@ -37,18 +38,6 @@
 
 #hikeList li:hover {
     transform: scale(1.025);
-}
-
-@media (prefers-color-scheme: dark) { 
-    #hikeList li {
-        background-color: white;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    #hikeList li {
-        background-color: var(--logo-blue-gray);
-    }
 }
 
 @media screen and (min-width: 600px) {
