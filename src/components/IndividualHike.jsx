@@ -6,6 +6,7 @@ import DisplayPath from "./DisplayPath";
 import "./IndividualHike.css";
 import { SignedIn } from "@neondatabase/neon-js/auth/react";
 import { authFetch } from "../lib/auth";
+import Button from "./ui/Button";
 
 export default function IndividualHike() {
   const { id } = useParams();
@@ -61,7 +62,7 @@ export default function IndividualHike() {
             </p>
             <SignedIn>
               <br></br>
-              <button onClick={() => handleDelete()}>Delete Hike</button>
+              <Button onClick={() => handleDelete()}>Delete Hike</Button>
             </SignedIn>
           </div>
         </>

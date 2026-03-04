@@ -1,0 +1,13 @@
+label{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  border: 1px solid var(--ui-secondary);
+  background-color: var(--ui-tertiary);
+  border-radius: 4px;
+  font-size: 1rem;
+}

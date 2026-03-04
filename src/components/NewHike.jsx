@@ -1,10 +1,12 @@
 import { useHikeContext } from "../context/HikeContext";
+import Button from "./ui/Button";
+import Form from "./ui/Form";
+import Input from "./ui/Input";
 
 export default function NewHike() {
   const { toggleRefresh } = useHikeContext();
   async function handleSubmit(e) {
     e.preventDefault();
-
 
     const formData = new FormData(e.target);
     const newHike = {
@@ -37,22 +39,21 @@ export default function NewHike() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="hikeName">Name:</label>
-      <input type="text" id="hikeName" name="hikeName" />
-      <br></br>
-
-      <label htmlFor="hikeLocation">Location:</label>
-      <input type="text" id="hikeLocation" name="hikeLocation" />
-      <br></br>
-
-      <label htmlFor="hikeDescription">Description:</label>
-      <input type="text" id="hikeDescription" name="hikeDescription" />
-      <br></br>
-
-      <button type="submit" id="hikeSubmit">
-        Submit
-      </button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Input type="text" id="hikeName" name="hikeName" label="Name:" />
+      <Input
+        type="textarea"
+        id="hikeLocation"
+        name="hikeLocation"
+        label="Location:"
+      />
+      <Input
+        type="text"
+        id="hikeDescription"
+        name="hikeDescription"
+        label="Description:"
+      />
+      <Button type="submit">Submit</Button>
+    </Form>
   );
 }
