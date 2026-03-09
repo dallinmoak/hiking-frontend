@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useHikeContext } from "../context/HikeContext";
 import Button from "./ui/Button";
 import Form from "./ui/Form";
@@ -5,6 +6,7 @@ import Input from "./ui/Input";
 
 export default function NewHike() {
   const { toggleRefresh } = useHikeContext();
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -28,8 +30,11 @@ export default function NewHike() {
         options,
       );
       if (res.ok) {
+        const data = await res.json();
+        console.log(data);
         e.target.reset();
         toggleRefresh();
+        navigate(`/hikes/${data[0].id}`);
       } else {
         console.error(res);
       }
