@@ -1,11 +1,12 @@
 import { useHikeContext } from "../context/HikeContext";
+import { getCurrentUserId } from "../lib/auth";
 import Button from "./ui/Button";
 import Form from "./ui/Form";
 import Input from "./ui/Input";
 
 export default function NewHike() {
   const { toggleRefresh } = useHikeContext();
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -13,6 +14,7 @@ export default function NewHike() {
       name: formData.get("hikeName"),
       location: formData.get("hikeLocation"),
       description: formData.get("hikeDescription"),
+      userId: await getCurrentUserId(),
     };
 
     try {
@@ -36,7 +38,7 @@ export default function NewHike() {
     } catch (error) {
       console.error("Hiking Post error:", error);
     }
-  }
+  };
 
   return (
     <Form onSubmit={handleSubmit}>

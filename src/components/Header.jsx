@@ -25,6 +25,14 @@ function Header() {
               />
               Create New Hike
             </Link>
+            <Link to="/my-favorites">
+              <img
+                src="/images/saved.png"
+                className="nav-icon"
+                alt="build icon"
+              />
+              My Favorites
+            </Link>
           </div>
           <div className="auth-container">
             <SignedIn>
