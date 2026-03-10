@@ -10,11 +10,6 @@ const getCurrentUserId = async () => {
       console.error("Error retrieving auth session:", error);
       return null;
     }
-
-    console.log("Auth session data:", data);
-    console.log("User data:", data?.user);
-    console.log("Current user ID:", data?.user?.id);
-
     return data?.user?.id || null;
   } catch (error) {
     console.error("Error retrieving auth session:", error);

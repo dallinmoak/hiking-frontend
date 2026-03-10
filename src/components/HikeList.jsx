@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHikeContext } from "../context/HikeContext";
-import { Link } from "react-router-dom";
 import "./HikeList.css";
+import ListItem from "./ui/ListItem";
+import { authFetch, getCurrentUserId } from "../lib/auth";
 
 export default function HikeList() {
   const { refresh } = useHikeContext();
@@ -26,16 +27,7 @@ export default function HikeList() {
           <ul id="hikeList">
             {hikes.map((hike) => {
               return (
-                <li key={hike.id}>
-                  <Link to={`/hikes/${hike.id}`} className="hike-link">
-                    <h3>
-                      <strong>ID:</strong>&nbsp;{hike.id}
-                    </h3>
-                    <p>
-                      <strong>Name:</strong>&nbsp;{hike.name}
-                    </p>
-                  </Link>
-                </li>
+                <ListItem key={hike.id} hike={hike}/>
               );
             })}
           </ul>
