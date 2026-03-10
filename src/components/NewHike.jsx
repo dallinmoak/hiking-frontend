@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useHikeContext } from "../context/HikeContext";
-import { getCurrentUserId } from "../lib/auth";
+import { authFetch, getCurrentUserId } from "../lib/auth";
 import Button from "./ui/Button";
 import Form from "./ui/Form";
 import Input from "./ui/Input";
@@ -28,8 +28,8 @@ export default function NewHike() {
         },
         body: JSON.stringify(newHike),
       };
-      const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/hikes`,
+      const res = await authFetch(
+        `${import.meta.env.VITE_BACKEND_URL}/protected/hikes`,
         options,
       );
       if (res.ok) {
