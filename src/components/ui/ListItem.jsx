@@ -66,7 +66,7 @@ export default function ListItem({ hike, refreshList = ()=> {} }) {
 
   return (
     <li className="cpt-list-item">
-      <Link to={`hikes/${hike.id}`}>
+      <Link to={`/hikes/${hike.id}`}>
         <p className="title">{hike.name}</p>
         <p className="description">
           {hike.description.substring(0, 35)}
