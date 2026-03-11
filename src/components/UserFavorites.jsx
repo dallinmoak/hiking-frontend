@@ -1,8 +1,9 @@
+import "./UserFavorites.css";
 import { SignedIn } from "@neondatabase/neon-js/auth/react";
 import { authFetch } from "../lib/auth";
 import { useState, useEffect } from "react";
 import Button from "./ui/Button";
-import { Link } from "react-router-dom";
+import ListItem from "./ui/ListItem";
 
 export default function UserFavorites() {
   const [favorites, setFavorites] = useState([]);
@@ -27,22 +28,22 @@ export default function UserFavorites() {
   }, []);
 
   return (
-    <SignedIn>
-      <h1>my favorited hikes</h1>
-      <Button onClick={fetchUserFavorites}>Refresh Favorites</Button>
-      {favorites ? (
-        <ul>
-          {favorites.map((favorite, index) => (
-            <li key={index}>
-              <Link to={`/hikes/${favorite.id}`}>
-                {favorite.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>loading...</p>
-      )}
-    </SignedIn>
+    <div className="cpt-user-favorites">
+      <SignedIn>
+        <h1>my favorited hikes</h1>
+        <Button onClick={fetchUserFavorites}>Refresh Favorites</Button>
+        {favorites ? (
+          <ul>
+            {favorites.map((favorite, index) => (
+              <ListItem key={index} hike={favorite} refreshList={()=> {
+                fetchUserFavorites();
+              }}/>
+            ))}
+          </ul>
+        ) : (
+          <p>loading...</p>
+        )}
+      </SignedIn>
+    </div>
   );
 }

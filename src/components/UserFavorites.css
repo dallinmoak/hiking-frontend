@@ -1,0 +1,8 @@
+.cpt-user-favorites {
+  ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}

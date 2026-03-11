@@ -1,0 +1,44 @@
+li.cpt-list-item {
+  width: 350px;
+  padding: 20px;
+  list-style: none;
+  border-radius: 10px;
+  background-color: var(--logo-blue-gray);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    flex-grow: 1;
+    h3,
+    p {
+      color: black;
+      &.title {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      &.description {
+        font-size: 0.9em;
+        font-style: italic;
+      }
+    }
+    h3 {
+      font-weight: normal;
+    }
+  }
+  a, img {
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.025);
+    }
+  }
+  img {
+    &:hover {
+      transform: scale(1.25);
+    }
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
