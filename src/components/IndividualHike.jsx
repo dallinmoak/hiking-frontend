@@ -5,16 +5,21 @@ import { parseCoordsArray } from "../utils";
 import DisplayPath from "./DisplayPath";
 import "./IndividualHike.css";
 import { SignedIn } from "@neondatabase/neon-js/auth/react";
-import { authFetch } from "../lib/auth";
+import { authFetch, getCurrentUserId } from "../lib/auth";
 import Button from "./ui/Button";
 
 export default function IndividualHike() {
   const { id } = useParams();
 
   const [hike, setHike] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     getHike();
+    const getUserId = async () => {
+      setUserId(await getCurrentUserId());
+    };
+    getUserId();
   }, []);
 
   const getHike = async () => {
@@ -60,9 +65,18 @@ export default function IndividualHike() {
             <p>
               <strong>Updated At:</strong>&nbsp;{hike.updatedAt}
             </p>
+            <p>
+              <strong>Author ID:</strong>&nbsp;{hike.authorId}
+            </p>
             <SignedIn>
-              <br></br>
-              <Button onClick={() => handleDelete()}>Delete Hike</Button>
+              {userId === hike.authorId && (
+                <>
+                  <br></br>
+                  <Button className="delete" onClick={() => handleDelete()}>
+                    Delete Hike
+                  </Button>
+                </>
+              )}
             </SignedIn>
           </div>
         </>
