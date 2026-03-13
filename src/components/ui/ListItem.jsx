@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { SignedIn } from "@neondatabase/neon-js/auth/react/ui";
 import { authFetch } from "../../lib/auth";
 import { useState, useEffect } from "react";
+import { addFavByHikeId, removeFavByHikeId } from "../../int/user-data";
 
-export default function ListItem({ hike, refreshList = ()=> {} }) {
+export default function ListItem({ hike, refreshList = () => {} }) {
   const [isFavorite, setIsFavorite] = useState(hike.isfavorite);
-
 
   const fetchFavStatus = async () => {
     try {
@@ -22,38 +22,18 @@ export default function ListItem({ hike, refreshList = ()=> {} }) {
 
   useEffect(() => {
     fetchFavStatus();
-   }, [hike]);
+  }, [hike]);
 
   const addFavorite = async (hikeId) => {
-    try {
-      const res = await authFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/protected/favorites/${hikeId}`,
-        { method: "POST" },
-      );
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      setIsFavorite(true);
-      refreshList();
-    } catch (error) {
-      console.error("Error adding favorite:", error);
-    }
+    await addFavByHikeId(hikeId);
+    setIsFavorite(true);
+    refreshList();
   };
 
   const removeFavorite = async (hikeId) => {
-    try {
-      const res = await authFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/protected/favorites/${hikeId}`,
-        { method: "DELETE" },
-      );
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      setIsFavorite(false);
-      refreshList();
-    } catch (error) {
-      console.error("Error removing favorite:", error);
-    }
+    await removeFavByHikeId(hikeId);
+    setIsFavorite(false);
+    refreshList();
   };
 
   const handleFavoriteClick = () => {
