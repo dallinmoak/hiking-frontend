@@ -8,6 +8,8 @@ import { addFavByHikeId, removeFavByHikeId } from "../../int/user-data";
 export default function ListItem({ hike, refreshList = () => {} }) {
   const [isFavorite, setIsFavorite] = useState(hike.isfavorite);
 
+  const[favoriteCount, setFavoriteCount] = useState(hike.favoriteCount);
+
   const fetchFavStatus = async () => {
     try {
       const res = await authFetch(
@@ -27,12 +29,14 @@ export default function ListItem({ hike, refreshList = () => {} }) {
   const addFavorite = async (hikeId) => {
     await addFavByHikeId(hikeId);
     setIsFavorite(true);
+    setFavoriteCount((prevCount) => prevCount + 1);
     refreshList();
   };
 
   const removeFavorite = async (hikeId) => {
     await removeFavByHikeId(hikeId);
     setIsFavorite(false);
+    setFavoriteCount((prevCount) => prevCount - 1);
     refreshList();
   };
 
@@ -52,6 +56,7 @@ export default function ListItem({ hike, refreshList = () => {} }) {
           {hike.description.substring(0, 35)}
           {hike.description.length > 35 ? "..." : ""} ({hike.id})
         </p>
+        <p>{favoriteCount > 0 ? `${favoriteCount} ${favoriteCount === 1 ? "favorite" : "favorites"}`: "\u00A0" }</p>
       </Link>
       <SignedIn>
         <img
