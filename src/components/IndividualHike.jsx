@@ -14,6 +14,8 @@ export default function IndividualHike() {
   const [hike, setHike] = useState();
   const [userId, setUserId] = useState();
 
+  const [favorites, setFavorites] = useState([]);
+
   useEffect(() => {
     getHike();
     const getUserId = async () => {
@@ -23,10 +25,20 @@ export default function IndividualHike() {
   }, []);
 
   const getHike = async () => {
-    const url = `${import.meta.env.VITE_BACKEND_URL}/hikes/${id}`;
-    const response = await fetch(url);
-    const hike = await response.json();
-    setHike(hike);
+    const hikeUrl = `${import.meta.env.VITE_BACKEND_URL}/hikes/${id}`;
+    const hikeRes = await fetch(hikeUrl);
+    const hikeData = await hikeRes.json();
+    setHike(hikeData);
+    const userFavs = await Promise.all(
+      hikeData.userFavoriteItems.map(async (fav) => {
+        const userRes = await authFetch(
+          `${import.meta.env.VITE_BACKEND_URL}/protected/users/${fav.userId}`,
+        );
+        const userData = await userRes.json();
+        return userData;
+      }),
+    );
+    setFavorites(userFavs);
   };
 
   const handleDelete = async () => {
@@ -66,8 +78,22 @@ export default function IndividualHike() {
               <strong>Updated At:</strong>&nbsp;{hike.updatedAt}
             </p>
             <p>
-              <strong>Author ID:</strong>&nbsp;{hike.authorId}
+              <strong>Author:</strong>&nbsp;{hike.authorName}
             </p>
+            {hike.favoriteCount > 0 && (
+              <>
+                <p>
+                  <strong>Favorite Count:</strong>&nbsp;{hike.favoriteCount}
+                </p>
+                {favorites.map((fav, index) => {
+                  return (
+                    <p key={index}>
+                      <strong>{fav.name}</strong>&nbsp;favorited this hike.
+                    </p>
+                  );
+                })}
+              </>
+            )}
             <SignedIn>
               {userId === hike.authorId && (
                 <>
