@@ -61,51 +61,56 @@ export default function IndividualHike() {
   return (
     <>
       {hike ? (
-        <>
-          <div id="hike-container">
-            <h3>ID:&nbsp;{hike.id}</h3>
-            <p>
-              <strong>Name:</strong>&nbsp;{hike.name}
-            </p>
+        <div id="hike-container">
+          <div className="title-map-container">
+            <h2>{hike.name}</h2>
             <DisplayPath pathData={parseCoordsArray(hike.location)} />
-            <p>
-              <strong>Description:</strong>&nbsp;{hike.description}
-            </p>
-            <p>
-              <strong>Created At:</strong>&nbsp;{hike.createdAt}
-            </p>
-            <p>
-              <strong>Updated At:</strong>&nbsp;{hike.updatedAt}
-            </p>
-            <p>
-              <strong>Author:</strong>&nbsp;{hike.authorName}
-            </p>
-            {hike.favoriteCount > 0 && (
+          </div>
+          <p>
+            <strong>Description:</strong>&nbsp;{hike.description}
+          </p>
+          <p>
+            <strong>Created At:</strong>&nbsp;
+            {new Date(hike.createdAt).toLocaleString("en-US", {
+              dateStyle: "full",
+              timeStyle: "short",
+            })}
+          </p>
+          <p>
+            <strong>Updated At:</strong>&nbsp;
+            {new Date(hike.updatedAt).toLocaleString("en-US", {
+              dateStyle: "full",
+              timeStyle: "short",
+            })}
+          </p>
+          <p>
+            <strong>Author:</strong>&nbsp;{hike.authorName}
+          </p>
+          {hike.favoriteCount > 0 && (
+            <>
+              <p>
+                <strong>Favorite Count:</strong>&nbsp;{hike.favoriteCount}
+              </p>
+              {favorites.map((fav, index) => {
+                return (
+                  <p key={index}>
+                    <strong>{fav.name}</strong>&nbsp;favorited this hike.
+                  </p>
+                );
+              })}
+            </>
+          )}
+          <SignedIn>
+            {userId === hike.authorId && (
               <>
-                <p>
-                  <strong>Favorite Count:</strong>&nbsp;{hike.favoriteCount}
-                </p>
-                {favorites.map((fav, index) => {
-                  return (
-                    <p key={index}>
-                      <strong>{fav.name}</strong>&nbsp;favorited this hike.
-                    </p>
-                  );
-                })}
+                <br></br>
+                <Button className="delete" onClick={() => handleDelete()}>
+                  Delete Hike
+                </Button>
               </>
             )}
-            <SignedIn>
-              {userId === hike.authorId && (
-                <>
-                  <br></br>
-                  <Button className="delete" onClick={() => handleDelete()}>
-                    Delete Hike
-                  </Button>
-                </>
-              )}
-            </SignedIn>
-          </div>
-        </>
+          </SignedIn>
+        </div>
       ) : (
         <h2 className="loading">Loading...</h2>
       )}
