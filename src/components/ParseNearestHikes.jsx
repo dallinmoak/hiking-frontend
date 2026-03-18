@@ -1,24 +1,17 @@
-import HikeList from "./HikeList";
+export function getDistanceMiles(lat1, lon1, lat2, lon2) {
+  const R = 3958.8; // Earth radius miles
 
-navigator.geolocation.getCurrentPosition((position) => {
-  doSomething(position.coords.latitude, position.coords.longitude);
-});
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
 
-hikes = HikeList.hikes;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) *
+      Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
 
-let nearestHikes = [];
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-hikes.forEach((hike) => {
-  distance = Math.sqrt(
-    Math.pow(hike.location.latitude - position.coords.latitude, 2) +
-      Math.pow(hike.location.longitude - position.coords.longitude, 2)
-  );
-
-  nearestHikes.push({ hike: hike, distance: distance });
-});
-
-nearestHikes.sort((a, b) => {
-  return a.distance - b.distance;
-});
-
-return nearestHikes;
+  return R * c;
+}
