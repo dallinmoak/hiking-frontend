@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import HikeList from "./components/HikeList";
 import NewHike from "./components/NewHike";
 import IndividualHike from "./components/IndividualHike";
+import UserFavorites from "./components/UserFavorites";
 import { HikeProvider } from "./context/HikeContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthView, NeonAuthUIProvider } from "@neondatabase/neon-js/auth/react";
@@ -22,6 +23,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HikeList />} exact />
               <Route path="/newHike" element={<NewHike />} exact />
+              <Route path="/my-favorites" element={<UserFavorites />} exact />
               <Route path="/hikes/:id" element={<IndividualHike />} />
               <Route path="/auth/sign-in" element={<Login />} />
               <Route

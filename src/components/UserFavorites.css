@@ -1,0 +1,14 @@
+.cpt-user-favorites {
+  padding: 20px;
+  h1{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  ul {
+    margin-top: 1em;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
