@@ -5,7 +5,6 @@ import Button from "./ui/Button";
 import { parseCoordsArray } from "../utils";
 import { getDistanceMiles } from "./ParseNearestHikes";
 import ListItem from "./ui/ListItem";
-import { authFetch, getCurrentUserId } from "../lib/auth";
 
 export default function HikeList() {
   const { refresh } = useHikeContext();
