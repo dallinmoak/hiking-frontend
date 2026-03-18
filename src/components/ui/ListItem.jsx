@@ -5,10 +5,14 @@ import { authFetch } from "../../lib/auth";
 import { useState, useEffect } from "react";
 import { addFavByHikeId, removeFavByHikeId } from "../../int/user-data";
 
-export default function ListItem({ hike, refreshList = () => {} }) {
+export default function ListItem({
+  hike,
+  refreshList = () => {},
+  sortNearest = false,
+}) {
   const [isFavorite, setIsFavorite] = useState(hike.isfavorite);
 
-  const[favoriteCount, setFavoriteCount] = useState(hike.favoriteCount);
+  const [favoriteCount, setFavoriteCount] = useState(hike.favoriteCount);
 
   const fetchFavStatus = async () => {
     try {
@@ -56,7 +60,16 @@ export default function ListItem({ hike, refreshList = () => {} }) {
           {hike.description.substring(0, 35)}
           {hike.description.length > 35 ? "..." : ""} ({hike.id})
         </p>
-        <p>{favoriteCount > 0 ? `${favoriteCount} ${favoriteCount === 1 ? "favorite" : "favorites"}`: "\u00A0" }</p>
+        <p>
+          {sortNearest &&
+            hike.distance &&
+            `${hike.distance.toFixed(1)} miles away`}
+        </p>
+        <p>
+          {favoriteCount > 0
+            ? `${favoriteCount} ${favoriteCount === 1 ? "favorite" : "favorites"}`
+            : "\u00A0"}
+        </p>
       </Link>
       <SignedIn>
         <img

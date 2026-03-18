@@ -14,7 +14,6 @@ export default function HikeList() {
   const [sortNearest, setSortNearest] = useState(false);
   const [location, setLocation] = useState(null);
 
-  // get user location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -25,16 +24,13 @@ export default function HikeList() {
       },
       () => {
         console.log("location denied");
-      }
+      },
     );
   }, []);
 
-  // fetch hikes
   useEffect(() => {
     async function fetchHikes() {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/hikes`
-      );
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/hikes`);
       const tempHikes = await response.json();
       setHikes(tempHikes);
     }
@@ -56,16 +52,10 @@ export default function HikeList() {
 
         return {
           ...hike,
-          distance: getDistanceMiles(
-            location.lat,
-            location.lon,
-            lat,
-            lon
-          ),
+          distance: getDistanceMiles(location.lat, location.lon, lat, lon),
         };
       })
       .sort((a, b) => a.distance - b.distance);
-
   }, [hikes, location, sortNearest]);
 
   return (
@@ -79,28 +69,17 @@ export default function HikeList() {
         {sortNearest ? "Default Order" : "Sort By Nearest"}
       </Button>
 
-      {sortNearest && !location && (
-        <p>Getting your location…</p>
-      )}
+      {sortNearest && !location && <p>Getting your location…</p>}
 
       {hikes.length === 0 ? (
         <p>Loading...</p>
       ) : (
         <ul id="hikeList">
           {sortedHikes.map((hike) => (
-            
-        <>
-      
-                <ListItem key={hike.id} hike={hike}/>
-                {sortNearest && hike.distance && (
-                  <p>
-                    {hike.distance.toFixed(1)} miles away
-                  </p>
-                )}
-              </Link>
-            </li>
+            <>
+              <ListItem key={hike.id} hike={hike} sortNearest={sortNearest} />
+            </>
           ))}
-          </>
         </ul>
       )}
     </div>
