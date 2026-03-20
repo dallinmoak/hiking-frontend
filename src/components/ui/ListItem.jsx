@@ -8,7 +8,7 @@ import { addFavByHikeId, removeFavByHikeId } from "../../int/user-data";
 export default function ListItem({
   hike,
   refreshList = () => {},
-  sortNearest = false,
+  sortMode = "default",
 }) {
   const [isFavorite, setIsFavorite] = useState(hike.isfavorite);
 
@@ -61,7 +61,7 @@ export default function ListItem({
           {hike.description.length > 35 ? "..." : ""} ({hike.id})
         </p>
         <p>
-          {sortNearest &&
+          {sortMode === "nearest" &&
             hike.distance &&
             `${hike.distance.toFixed(1)} miles away`}
         </p>
