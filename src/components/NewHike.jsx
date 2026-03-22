@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useHikeContext } from "../context/HikeContext";
 import { authFetch, getCurrentUserId } from "../lib/auth";
+import "./NewHike.css";
 import Button from "./ui/Button";
 import Form from "./ui/Form";
 import Input from "./ui/Input";
@@ -47,6 +48,7 @@ export default function NewHike() {
   };
 
   return (
+    <div className="form-container">
     <Form onSubmit={handleSubmit}>
       <Input type="text" id="hikeName" name="hikeName" label="Name:" />
       <Input
@@ -63,5 +65,6 @@ export default function NewHike() {
       />
       <Button type="submit">Submit</Button>
     </Form>
+    </div>
   );
 }
