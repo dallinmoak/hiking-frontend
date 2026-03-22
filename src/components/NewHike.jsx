@@ -48,7 +48,7 @@ export default function NewHike() {
   };
 
   return (
-    <div class="form-container">
+    <div className="form-container">
     <Form onSubmit={handleSubmit}>
       <Input type="text" id="hikeName" name="hikeName" label="Name:" />
       <Input
