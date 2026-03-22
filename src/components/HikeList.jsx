@@ -58,56 +58,49 @@ export default function HikeList() {
         .sort((a, b) => a.distance - b.distance);
     }
 
-
     if (sortMode == "favorites") {
-      return hikes
-        .sort((a, b) => b.favoriteCount - a.favoriteCount);
-
+      return hikes.sort((a, b) => b.favoriteCount - a.favoriteCount);
     }
   }, [hikes, sortMode, location]);
 
+  return (
+    <div id="hikelist-container">
+      <h2>Hikes:</h2>
 
+      <div className="sort-buttons">
+        <Button
+          className={sortMode === "default" ? "primary" : "secondary"}
+          onClick={() => setSortMode("default")}
+        >
+          Default
+        </Button>
 
-return (
-  <div id="hikelist-container">
-    <h2>Hikes:</h2>
+        <Button
+          className={sortMode === "nearest" ? "primary" : "secondary"}
+          onClick={() => setSortMode("nearest")}
+        >
+          Sort By Nearest
+        </Button>
 
-    <div className="sort-buttons">
-      <Button
-        className={sortMode === "default" ? "primary" : "secondary"}
-        onClick={() => setSortMode("default")}
-      >
-        Default
-      </Button>
+        <Button
+          className={sortMode === "favorites" ? "primary" : "secondary"}
+          onClick={() => setSortMode("favorites")}
+        >
+          Sort By Favorites
+        </Button>
+      </div>
 
-      <Button
-        className={sortMode === "nearest" ? "primary" : "secondary"}
-        onClick={() => setSortMode("nearest")}
-      >
-        Sort By Nearest
-      </Button>
+      {sortMode === "nearest" && !location && <p>Getting your location…</p>}
 
-      <Button
-        className={sortMode === "favorites" ? "primary" : "secondary"}
-        onClick={() => setSortMode("favorites")}
-      >
-        Sort By Favorites
-      </Button>
-    </div>
-
-    {sortMode === "nearest" && !location && <p>Getting your location…</p>}
-
-    {hikes.length === 0 ? (
-      <p>Loading...</p>
-    ) : (
-      <ul id="hikeList">
-        {sortedHikes.map((hike) => (
-          <>
+      {hikes.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <ul id="hikeList">
+          {sortedHikes.map((hike) => (
             <ListItem key={hike.id} hike={hike} sortMode={sortMode} />
-          </>
-        ))}
-      </ul>
-    )}
-  </div>
-);
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
